@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:tif_test/provider/event-provider.dart';
-import 'package:tif_test/provider/search-event-provider.dart';
+import 'package:tif_test/provider/general-provider.dart';
 import 'package:tif_test/screens/event-details-screen.dart';
-import 'package:tif_test/screens/home-screen.dart';
+import 'package:tif_test/screens/main-screen.dart';
 import 'package:tif_test/screens/search-screen.dart';
 
 void main() {
@@ -18,27 +18,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(
-              create: (ctx) => EventProvider()
+          ChangeNotifierProvider(create: (ctx) => GeneralProvider()),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            // fontFamily: 'Inter'
+            textTheme: GoogleFonts.interTextTheme(
+              Theme.of(context).textTheme
+            )
           ),
-          ChangeNotifierProvider(
-              create: (ctx) => SearchEventProvider()
-          )
-    ],
-    child: MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: 'Flutter Demo',
-    theme: ThemeData(
-    primarySwatch: Colors.purple,
-    ),
-    home: const HomeScreen(),
-      routes: {
-        HomeScreen.routeName : (ctx) => const HomeScreen(),
-        SearchScreen.routeName : (ctx) => const SearchScreen(),
-        EventDetailScreen.routeName : (ctx) => EventDetailScreen()
-      },
-      )
-    );
+          home: const MainScreen(),
+          routes: {
+            SearchScreen.routeName: (ctx) => const SearchScreen(),
+            EventDetailScreen.routeName: (ctx) => const EventDetailScreen()
+          },
+        ));
   }
 }
-

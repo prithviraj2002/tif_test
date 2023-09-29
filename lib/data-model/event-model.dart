@@ -10,20 +10,19 @@ class EventClass {
   final String venue_city;
   final String venue_country;
 
-  EventClass({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.banner_image,
-    required this.date_time,
-    required this.organiser_name,
-    required this.organiser_icon,
-    required this.venue_name,
-    required this.venue_city,
-    required this.venue_country
-  });
+  EventClass(
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.banner_image,
+      required this.date_time,
+      required this.organiser_name,
+      required this.organiser_icon,
+      required this.venue_name,
+      required this.venue_city,
+      required this.venue_country});
 
-  factory EventClass.fromJson(Map<String, dynamic> json){
+  factory EventClass.fromJson(Map<String, dynamic> json) {
     return EventClass(
         id: json['id'] ?? 0,
         title: json['title'] ?? "Default title",
@@ -34,7 +33,6 @@ class EventClass {
         organiser_icon: json['organiser_icon'] ?? "Default icon",
         venue_name: json['venue_name'] ?? "Default venue name",
         venue_city: json['venue_city'] ?? "Default city",
-        venue_country: json['venue_country'] ?? "Default country"
-    );
+        venue_country: json['venue_country'] ?? "Default country");
   }
 }
